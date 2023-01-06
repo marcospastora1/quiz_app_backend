@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('aluno_users', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->boolean('status')->default(true);
-            $table->rememberToken();
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('nome');
+            $table->foreignId('tipo_user_id')->references('id')->on('tipo_users');
+            $table->string('matricula');
+            $table->date('data_nascimento');
             $table->timestamps();
+
+            $table->unique('user_id');
         });
     }
 
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('aluno_users');
     }
 };
