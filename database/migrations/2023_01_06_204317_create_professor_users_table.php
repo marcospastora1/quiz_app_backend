@@ -24,6 +24,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unique('user_id');
+            $table->unique('registro_professor');
+            $table->unique('whatsapp');
         });
     }
 

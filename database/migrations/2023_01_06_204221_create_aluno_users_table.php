@@ -20,9 +20,12 @@ return new class extends Migration
             $table->foreignId('tipo_user_id')->references('id')->on('tipo_users');
             $table->string('matricula');
             $table->date('data_nascimento');
+            $table->string('whatsapp');
             $table->timestamps();
 
             $table->unique('user_id');
+            $table->unique('matricula');
+            $table->unique('whatsapp');
         });
     }
 
