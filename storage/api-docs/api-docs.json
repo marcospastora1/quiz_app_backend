@@ -1,0 +1,33 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Quiz App backend API",
+        "description": "Documentação da API desenvolvida para o quiz app",
+        "contact": {
+            "email": "marcospastora@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/quiz/status/listar": {
+            "get": {
+                "tags": [
+                    "quiz"
+                ],
+                "summary": "contextos - api.quiz.status.listar",
+                "description": "Listagem status do quiz",
+                "operationId": "295ed253e1f4b5780214eed2af446404",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    }
+}
