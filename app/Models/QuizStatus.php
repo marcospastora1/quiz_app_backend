@@ -17,7 +17,7 @@ class QuizStatus extends Model
 
     protected $cast = [];
 
-    public function retornaTipos()
+    public function retornaStatus()
     {
         $tipos = self::select('id', 'descricao')->get();
         return $tipos;
