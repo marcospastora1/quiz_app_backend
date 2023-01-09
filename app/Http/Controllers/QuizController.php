@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Retorno;
+use App\Events\CadastroProfessor;
 use App\Models\QuizStatus;
 use Illuminate\Http\Request;
 use Throwable;
@@ -35,8 +36,10 @@ class QuizController extends Controller
     public function listarStatus()
     {
         try {
+            event(new CadastroProfessor('Marcos', 'marcospastora@gmail.com'));
             return Retorno::webResult(true, $this->quizStatus->retornaStatus(), null);
         } catch (Throwable $th) {
+            dd($th->getMessage());
             return Retorno::webResult(false, null, 'Falha ao pegar status do quiz');
         }
     }
