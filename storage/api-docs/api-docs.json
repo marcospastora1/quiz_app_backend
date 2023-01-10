@@ -101,21 +101,6 @@
                 ]
             }
         },
-        "/api/refresh": {
-            "get": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "Refresh Token - api.refresh",
-                "description": "Atualizar Token",
-                "operationId": "86e894df0ccad042116bf937e5593629",
-                "responses": {
-                    "200": {
-                        "description": "Successful"
-                    }
-                }
-            }
-        },
         "/api/quiz/status/listar": {
             "get": {
                 "tags": [
@@ -131,18 +116,13 @@
                 },
                 "security": [
                     {
-                        "bearerAuth": "Bearer"
+                        "bearerAuth": []
                     }
                 ]
             }
         }
     },
     "components": {
-        "responses": {
-            "401": {
-                "description": "Unauthorized"
-            }
-        },
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",
