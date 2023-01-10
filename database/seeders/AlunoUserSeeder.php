@@ -17,7 +17,7 @@ class AlunoUserSeeder extends Seeder
     {
         $alunoJson = '[
             {
-                "user_id": 1,
+                "user_id": 2,
                 "nome": "Marcos Pastora Santos",
                 "tipo_user_id": 2,
                 "matricula": "12345678",

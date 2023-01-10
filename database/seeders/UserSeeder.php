@@ -15,15 +15,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        //senha: abc123
         $userJson = '[
             {
                 "email": "professor@gmail.com",
-                "password": "$2y$10$pq/xtILKkL32mvmAehqXmu5GiC2UDFrzNtMdo1UX0kxJip00QLQr.",
+                "password": "$2y$10$xsbN2IEHrVRA0fz3xrwE/e.W3YvHqDJ7ojUTDNVSZ5ABqMBwUnAye",
                 "status": 1
             },
             {
                 "email": "aluno@gmail.com",
-                "password": "$2y$10$pq/xtILKkL32mvmAehqXmu5GiC2UDFrzNtMdo1UX0kxJip00QLQr.",
+                "password": "$2y$10$xsbN2IEHrVRA0fz3xrwE/e.W3YvHqDJ7ojUTDNVSZ5ABqMBwUnAye",
                 "status": 1
             }
         ]';
