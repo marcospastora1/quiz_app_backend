@@ -9,14 +9,40 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/quiz/status/listar": {
-            "get": {
+        "/api/login/professor": {
+            "post": {
                 "tags": [
-                    "quiz"
+                    "Auth"
                 ],
-                "summary": "contextos - api.quiz.status.listar",
-                "description": "Listagem status do quiz",
-                "operationId": "295ed253e1f4b5780214eed2af446404",
+                "summary": "login - api.login.professor",
+                "description": "Login professor",
+                "operationId": "4db0cd29bc5b31a4c7a2570326f9f444",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "professor@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "abc123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Successful"
@@ -27,6 +53,104 @@
                         "bearerAuth": []
                     }
                 ]
+            }
+        },
+        "/api/login/aluno": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "login - api.login.aluno",
+                "description": "Login aluno",
+                "operationId": "a46ed722500d21d1331e0d292be38e50",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "aluno@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "abc123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/refresh": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Refresh Token - api.refresh",
+                "description": "Atualizar Token",
+                "operationId": "86e894df0ccad042116bf937e5593629",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    }
+                }
+            }
+        },
+        "/api/quiz/status/listar": {
+            "get": {
+                "tags": [
+                    "quiz"
+                ],
+                "summary": "quiz - api.quiz.status.listar",
+                "description": "Listagem status do quiz",
+                "operationId": "295ed253e1f4b5780214eed2af446404",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": "Bearer"
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "401": {
+                "description": "Unauthorized"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "realize login para obter o token",
+                "name": "Token",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
             }
         }
     }

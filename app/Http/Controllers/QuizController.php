@@ -21,7 +21,7 @@ class QuizController extends Controller
     /**
      * @OA\Get(
      * path="/api/quiz/status/listar",
-     * summary="contextos - api.quiz.status.listar",
+     * summary="quiz - api.quiz.status.listar",
      * description ="Listagem status do quiz",
      * tags={"quiz"},
      * security={ {"bearerAuth": {} }},
@@ -36,10 +36,8 @@ class QuizController extends Controller
     public function listarStatus()
     {
         try {
-            event(new CadastroProfessor('Marcos', 'marcospastora@gmail.com'));
             return Retorno::webResult(true, $this->quizStatus->retornaStatus(), null);
         } catch (Throwable $th) {
-            dd($th->getMessage());
             return Retorno::webResult(false, null, 'Falha ao pegar status do quiz');
         }
     }
