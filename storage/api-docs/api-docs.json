@@ -9,14 +9,14 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/login/professor": {
+        "/api/app/login/professor": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
-                "summary": "login - api.login.professor",
+                "summary": "login - api.app.login.professor",
                 "description": "Login professor",
-                "operationId": "4db0cd29bc5b31a4c7a2570326f9f444",
+                "operationId": "62a5b13d1eed936ad448494456549b7e",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -55,14 +55,14 @@
                 ]
             }
         },
-        "/api/login/aluno": {
+        "/api/app/login/aluno": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
-                "summary": "login - api.login.aluno",
+                "summary": "login - api.app.login.aluno",
                 "description": "Login aluno",
-                "operationId": "a46ed722500d21d1331e0d292be38e50",
+                "operationId": "2b042dcf3552033b7d6895ec6f5225c9",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -104,11 +104,151 @@
         "/api/quiz/status/listar": {
             "get": {
                 "tags": [
-                    "quiz"
+                    "Quiz"
                 ],
                 "summary": "quiz - api.quiz.status.listar",
                 "description": "Listagem status do quiz",
                 "operationId": "295ed253e1f4b5780214eed2af446404",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/app/usuarios/cadastro-professor": {
+            "post": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Cadastro - api.app.usuarios.cadastro.professor",
+                "description": "Cadastro de usuário do tipo professor",
+                "operationId": "e5697229d8098d7ce18f978c418f1db5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password",
+                                    "nome",
+                                    "registro_professor",
+                                    "data_nascimento",
+                                    "whatsapp"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "professor@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "abc123"
+                                    },
+                                    "nome": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Professor Girafales"
+                                    },
+                                    "registro_professor": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "558741"
+                                    },
+                                    "data_nascimento": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1996-09-28"
+                                    },
+                                    "whatsapp": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "27996123123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/app/usuarios/cadastro-aluno": {
+            "post": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Cadastro - api.app.usuarios.cadastro.aluno",
+                "description": "Cadastro de usuário do tipo aluno",
+                "operationId": "048500a0a77df84e3388429b9d01382b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password",
+                                    "nome",
+                                    "matricula",
+                                    "data_nascimento",
+                                    "whatsapp"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "aluno@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "abc123"
+                                    },
+                                    "nome": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Chaves Del Oitcho"
+                                    },
+                                    "matricula": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "558741"
+                                    },
+                                    "data_nascimento": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1996-09-28"
+                                    },
+                                    "whatsapp": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "27996123123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Successful"

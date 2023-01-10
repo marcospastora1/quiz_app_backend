@@ -33,8 +33,8 @@ class AuthController extends Controller
 
     /**
      * @OA\Post(
-     * path="/api/login/professor",
-     * summary="login - api.login.professor",
+     * path="/api/app/login/professor",
+     * summary="login - api.app.login.professor",
      * description ="Login professor",
      * tags={"Auth"},
      * security={ {"bearerAuth": {} }},
@@ -86,8 +86,8 @@ class AuthController extends Controller
 
     /**
      * @OA\Post(
-     * path="/api/login/aluno",
-     * summary="login - api.login.aluno",
+     * path="/api/app/login/aluno",
+     * summary="login - api.app.login.aluno",
      * description ="Login aluno",
      * tags={"Auth"},
      * security={ {"bearerAuth": {} }},

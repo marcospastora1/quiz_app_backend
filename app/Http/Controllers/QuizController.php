@@ -23,7 +23,7 @@ class QuizController extends Controller
      * path="/api/quiz/status/listar",
      * summary="quiz - api.quiz.status.listar",
      * description ="Listagem status do quiz",
-     * tags={"quiz"},
+     * tags={"Quiz"},
      * security={ {"bearerAuth": {} }},
      * @OA\Response(
      *    response=200,
