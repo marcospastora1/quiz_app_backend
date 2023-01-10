@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Retorno;
+use App\Events\CadastroProfessor;
 use App\Http\Traits\Helpers\FunctionsTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -129,6 +130,7 @@ class UsuarioController extends Controller
                 'updated_at' => $this->getDateBr()
             ]);
             DB::commit();
+            event(new CadastroProfessor(nomeProfessor: $request['nome'], emailProfessor: $request['email']));
             return Retorno::mobileResult(true, 'Cadastro realizado com sucesso', null);
         } catch (Throwable $th) {
             DB::rollback();
@@ -254,6 +256,7 @@ class UsuarioController extends Controller
                 'updated_at' => $this->getDateBr()
             ]);
             DB::commit();
+            event(new CadastroProfessor(nomeProfessor: $request['nome'], emailProfessor: $request['email']));
             return Retorno::mobileResult(true, 'Cadastro realizado com sucesso', null);
         } catch (Throwable $th) {
             DB::rollback();
