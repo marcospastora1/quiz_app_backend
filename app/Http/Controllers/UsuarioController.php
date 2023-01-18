@@ -6,6 +6,7 @@ use App\Classes\Retorno;
 use App\Events\CadastroProfessor;
 use App\Http\Traits\Helpers\FunctionsTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -71,6 +72,9 @@ class UsuarioController extends Controller
      *  @return JsonResponse
      *
      */
+    public function teste()
+    {
+    }
 
     /**
      * @OA\Post(
@@ -136,14 +140,6 @@ class UsuarioController extends Controller
         $tipo_rota = $request->route()->getName();
         $tipo_rota = explode('.', $tipo_rota);
 
-        if (!isset($request['email'])) {
-            return Retorno::mobileResult(false, null, 2);
-        }
-        if (isset($request['password'])) {
-            $request['password'] = bcrypt($request['password']);
-        } else {
-            return Retorno::mobileResult(false, null, 3);
-        }
         if (!isset($request['nome'])) {
             return Retorno::mobileResult(false, null, 4);
         }
@@ -202,7 +198,7 @@ class UsuarioController extends Controller
                     'updated_at' => $this->getDateBr()
                 ]);
                 DB::commit();
-                event(new CadastroProfessor(nomeProfessor: $request['nome'], emailProfessor: $request['email']));
+                event(new CadastroProfessor(nomeProfessor: $request['nome'], emailProfessor: $request['email'], userId: $id));
             } else {
                 DB::table('aluno_users')->insert([
                     'user_id' => $id,
@@ -215,7 +211,7 @@ class UsuarioController extends Controller
                     'updated_at' => $this->getDateBr()
                 ]);
                 DB::commit();
-                event(new CadastroProfessor(nomeProfessor: $request['nome'], emailProfessor: $request['email']));
+                event(new CadastroProfessor(nomeProfessor: $request['nome'], emailProfessor: $request['email'],  userId: $id));
             }
 
             return Retorno::mobileResult(true, 'Cadastro realizado com sucesso', null);
@@ -223,5 +219,20 @@ class UsuarioController extends Controller
             DB::rollback();
             return Retorno::mobileResult(false, null, 8);
         }
+    }
+
+    public function ativarConta($id)
+    {
+        $id = Crypt::decrypt($id);
+
+        if (!DB::table('users')->where('id', '=', $id)->exists() || DB::table('users')->where('id', '=', $id)->where('status', '=', true)->exists()) {
+            return abort(404);
+        }
+        DB::table('users')
+            ->where('id', $id)
+            ->update(['status' => true]);
+
+
+        return view('ativado');
     }
 }

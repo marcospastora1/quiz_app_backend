@@ -6,6 +6,7 @@ use App\Events\CadastroProfessor;
 use App\Mail\EmailCadastroProfessor;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 
 class EnviarEmailCadastroProfessor
@@ -29,7 +30,8 @@ class EnviarEmailCadastroProfessor
     public function handle(CadastroProfessor $event)
 
     {
-        $link = 'https://google.com';
+        $id = Crypt::encrypt($event->userId);
+        $link = url('') . '/ativar-conta/' . $id;
         $email = (object) array(
             'mensagem' => "Prezado(a) $event->nomeProfessor, <br><br>
             Seu cadastro foi realizado com sucesso!! <br>

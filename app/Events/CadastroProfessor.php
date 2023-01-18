@@ -16,16 +16,18 @@ class CadastroProfessor
 
     public $nomeProfessor;
     public $emailProfessor;
+    public $userId;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(string $nomeProfessor, string $emailProfessor)
+    public function __construct(string $nomeProfessor, string $emailProfessor, int $userId)
     {
         $this->nomeProfessor = $nomeProfessor;
         $this->emailProfessor = $emailProfessor;
+        $this->userId = $userId;
     }
 
     /**

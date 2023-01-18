@@ -128,7 +128,7 @@
                 ],
                 "summary": "Cadastro - api.app.usuarios.cadastro.professor",
                 "description": "Cadastro de usuário do tipo professor",
-                "operationId": "e5697229d8098d7ce18f978c418f1db5",
+                "operationId": "2e0bb1770bf02cc9dc5e586bdb483ed9",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -198,7 +198,7 @@
                 ],
                 "summary": "Cadastro - api.app.usuarios.cadastro.aluno",
                 "description": "Cadastro de usuário do tipo aluno",
-                "operationId": "048500a0a77df84e3388429b9d01382b",
+                "operationId": "847b3f777326d5bbfdc493a7b359033f",
                 "requestBody": {
                     "required": true,
                     "content": {
