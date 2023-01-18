@@ -14,4 +14,5 @@ return [
     '10' => 'Número de Whatsapp já cadastrado',
     '11' => 'Número de registro do professor já cadastrado',
     '12' => 'Número de matricula do aluno já cadastrado',
+    '13' => 'Email já cadastrado',
 ];

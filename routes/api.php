@@ -24,8 +24,8 @@ Route::prefix('/app')->group(function () {
     });
 
     Route::prefix('/usuarios')->group(function () {
-        Route::post('/cadastro-professor', [UsuarioController::class, 'cadastroProfessor'])->name('api.app.usuarios.cadastro.professor');
-        Route::post('/cadastro-aluno', [UsuarioController::class, 'cadastroAluno'])->name('api.app.usuarios.cadastro.aluno');
+        Route::post('/cadastro-professor', [UsuarioController::class, 'cadastroUsuario'])->name('api.app.usuarios.cadastro.professor');
+        Route::post('/cadastro-aluno', [UsuarioController::class, 'cadastroUsuario'])->name('api.app.usuarios.cadastro.aluno');
     });
 });
 
