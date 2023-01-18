@@ -19,6 +19,16 @@ trait FunctionsTrait
 
     public function cadastroUser(Request $request)
     {
+        $tipo_id_professor = DB::table('tipo_users')->select('id')->where('descricao', '=', 'Professor')->get();
+        $tipo_id_professor = $tipo_id_professor[0]->id;
+
+        $tipo_id_aluno = DB::table('tipo_users')->select('id')->where('descricao', '=', 'Aluno')->get();
+        $tipo_id_aluno = $tipo_id_aluno[0]->id;
+
+        $rota = $request->route()->getName();
+        $rota = explode('.', $rota);
+
+
         if (!isset($request['email'])) {
             return Retorno::mobileResult(false, null, 2);
         }
@@ -33,9 +43,12 @@ trait FunctionsTrait
                 'email' => $request['email'],
                 'password' => $request['password'],
                 'status' => false,
+                'tipo_user_id' => last($rota) == 'professor' ? $tipo_id_professor : $tipo_id_aluno,
                 'created_at' => $this->getDateBr(),
                 'updated_at' => $this->getDateBr()
             ]);
+
+
             DB::commit();
         } catch (Throwable $th) {
             DB::rollback();

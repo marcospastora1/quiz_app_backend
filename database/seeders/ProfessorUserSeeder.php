@@ -19,7 +19,6 @@ class ProfessorUserSeeder extends Seeder
             {
                 "user_id": 1,
                 "nome": "Albert Einstein",
-                "tipo_user_id": 1,
                 "registro_professor": "12345678",
                 "data_nascimento": "1943-09-28",
                 "whatsapp": "27988537903"
@@ -33,7 +32,6 @@ class ProfessorUserSeeder extends Seeder
                 [
                     'user_id' => $professor->user_id,
                     'nome' => $professor->nome,
-                    'tipo_user_id' => $professor->tipo_user_id,
                     'registro_professor' => $professor->registro_professor,
                     'data_nascimento' => $professor->data_nascimento,
                     'whatsapp' => $professor->whatsapp

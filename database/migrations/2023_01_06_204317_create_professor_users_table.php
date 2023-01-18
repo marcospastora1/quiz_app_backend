@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->string('nome');
-            $table->foreignId('tipo_user_id')->references('id')->on('tipo_users');
             $table->string('registro_professor');
             $table->date('data_nascimento');
             $table->string('whatsapp');

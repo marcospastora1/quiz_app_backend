@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
-            $table->boolean('status')->default(true);
+            $table->boolean('status')->default(false);
+            $table->foreignId('tipo_user_id')->references('id')->on('tipo_users');
             $table->rememberToken();
             $table->timestamps();
         });

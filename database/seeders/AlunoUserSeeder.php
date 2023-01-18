@@ -19,7 +19,6 @@ class AlunoUserSeeder extends Seeder
             {
                 "user_id": 2,
                 "nome": "Marcos Pastora Santos",
-                "tipo_user_id": 2,
                 "matricula": "12345678",
                 "data_nascimento": "1996-09-28",
                 "whatsapp": "2799612123"
@@ -34,7 +33,6 @@ class AlunoUserSeeder extends Seeder
                 [
                     'user_id' => $aluno->user_id,
                     'nome' => $aluno->nome,
-                    'tipo_user_id' => $aluno->tipo_user_id,
                     'matricula' => $aluno->matricula,
                     'data_nascimento' => $aluno->data_nascimento,
                     'whatsapp' => $aluno->whatsapp

@@ -183,14 +183,11 @@ class UsuarioController extends Controller
 
             $id = DB::table('users')->select('id')->where('email', '=', $request['email'])->get();
             $id = $id[0]->id;
-            $tipo_id = DB::table('tipo_users')->select('id')->where('descricao', '=', 'Professor')->get();
-            $tipo_id = $tipo_id[0]->id;
 
             if (last($tipo_rota) == 'professor') {
                 DB::table('professor_users')->insert([
                     'user_id' => $id,
                     'nome' => $request['nome'],
-                    'tipo_user_id' => $tipo_id,
                     'registro_professor' => $request['registro_professor'],
                     'data_nascimento' => $request['data_nascimento'],
                     'whatsapp' => $request['whatsapp'],
@@ -203,7 +200,6 @@ class UsuarioController extends Controller
                 DB::table('aluno_users')->insert([
                     'user_id' => $id,
                     'nome' => $request['nome'],
-                    'tipo_user_id' => $tipo_id,
                     'matricula' => $request['matricula'],
                     'data_nascimento' => $request['data_nascimento'],
                     'whatsapp' => $request['whatsapp'],
