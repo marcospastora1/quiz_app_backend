@@ -27,10 +27,26 @@ Route::prefix('/app')->group(function () {
         Route::post('/cadastro-professor', [UsuarioController::class, 'cadastroUsuario'])->name('api.app.usuarios.cadastro.professor');
         Route::post('/cadastro-aluno', [UsuarioController::class, 'cadastroUsuario'])->name('api.app.usuarios.cadastro.aluno');
     });
-});
 
-Route::middleware('jwt.authenticate')->group(function () {
-    Route::prefix('/quiz')->group(function () {
-        Route::get('/status/listar', [QuizController::class, 'listarStatus'])->name('api.quiz.status.listar');
+    Route::middleware('jwt.authenticate')->group(function () {
+        Route::prefix('/quiz')->group(function () {
+            Route::get('/status/listar', [QuizController::class, 'listarStatus'])->name('api.app.quiz.status.listar');
+            Route::get('/disciplinas/listar', [QuizController::class, 'listarDisciplina'])->name('api.app.quiz.disciplinas.listar');
+            Route::get('/listar', [QuizController::class, 'listarQuiz'])->name('api.app.quiz.listar');
+        });
+
+        Route::middleware('professor.authenticate')->group(function () {
+            Route::prefix('/quiz')->group(function () {
+                Route::post('/cadastrar', [QuizController::class, 'cadastrarQuiz'])->name('api.app.quiz.cadastrar');
+                Route::put('/editar', [QuizController::class, 'editarQuiz'])->name('api.app.quiz.editar');
+                Route::delete('/deletar', [QuizController::class, 'deletarQuiz'])->name('api.app.quiz.deletar');
+            });
+
+            Route::prefix('/disciplinas')->group(function () {
+                Route::post('/cadastrar', [QuizController::class, 'cadastrarDisciplina'])->name('api.app.quiz.disciplinas.cadastrar');
+                Route::put('/editar', [QuizController::class, 'editarDisciplina'])->name('api.app.quiz.disciplinas.editar');
+                Route::put('/deletar', [QuizController::class, 'deletarDisciplina'])->name('api.app.quiz.disciplinas.deletar');
+            });
+        });
     });
 });

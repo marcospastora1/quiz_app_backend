@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('disciplina_id')->references('id')->on('disciplinas');
             $table->foreignId('professor_user_id')->references('id')->on('professor_users');
             $table->foreignId('quiz_status_id')->references('id')->on('quiz_status');
-            $table->string('chave')->unique();
+            $table->string('chave', 5)->unique();
             $table->integer('numero_questoes');
             $table->float('tempo_horas');
             $table->timestamps();

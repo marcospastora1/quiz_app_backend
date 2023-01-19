@@ -17,7 +17,7 @@ class Disciplina extends Model
 
     protected $cast = [];
 
-    public function retornaTipos()
+    public function retornaDisciplinas()
     {
         $tipos = self::select('id', 'descricao')->get();
         return $tipos;

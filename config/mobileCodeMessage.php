@@ -16,4 +16,12 @@ return [
     '12' => 'Número de matricula do aluno já cadastrado',
     '13' => 'Email já cadastrado',
     '14' => 'Usuário não existe',
+    '15' => 'Favor informar o título do Quiz',
+    '16' => 'Favor informar a disciplina do Quiz',
+    '17' => 'A quantidade de questões está incorreta',
+    '18' => 'As questões devem conter 4 respostas',
+    '19' => 'Favor informar o tempo de duração do quiz',
+    '20' => 'As questões devem haver apenas 1 reposta correta',
+    '21' => 'As questões devem haver ao menos 1 resposta correta',
+    '22' => 'Falha ao cadastrar Quiz',
 ];

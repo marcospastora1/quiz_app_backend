@@ -17,6 +17,9 @@ trait FunctionsTrait
         return now('America/Sao_Paulo')->format('Y-m-d H:m:s');
     }
 
+    /**
+     * Função para cadastrar usuário
+     */
     public function cadastroUser(Request $request)
     {
         $tipo_id_professor = DB::table('tipo_users')->select('id')->where('descricao', '=', 'Professor')->get();
@@ -54,5 +57,22 @@ trait FunctionsTrait
             DB::rollback();
             return Retorno::mobileResult(false, null, 8);
         }
+    }
+
+    /**
+     * Função para gerar chave aleatória
+     */
+    public function geraChave($n)
+    {
+        $chave_aleatoria = "";
+        $domain = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+
+        $len = strlen($domain);
+
+        for ($i = 0; $i < $n; $i++) {
+            $index = rand(0, $len - 1);
+            $chave_aleatoria = $chave_aleatoria . $domain[$index];
+        }
+        return $chave_aleatoria;
     }
 }

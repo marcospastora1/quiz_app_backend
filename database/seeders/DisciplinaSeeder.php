@@ -17,7 +17,7 @@ class DisciplinaSeeder extends Seeder
     {
         $disciplinasJson = '[
             {
-                "descricao": "Portugês"
+                "descricao": "Português"
             },
             {
                 "descricao": "Matemática"

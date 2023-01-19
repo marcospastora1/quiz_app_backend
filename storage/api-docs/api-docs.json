@@ -106,9 +106,135 @@
                 "tags": [
                     "Quiz"
                 ],
-                "summary": "quiz - api.quiz.status.listar",
+                "summary": "quiz - api.app.quiz.status.listar",
                 "description": "Listagem status do quiz",
                 "operationId": "295ed253e1f4b5780214eed2af446404",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/app/quiz/disciplinas/listar": {
+            "get": {
+                "tags": [
+                    "Quiz"
+                ],
+                "summary": "quiz - api.app.quiz.disciplinas.listar",
+                "description": "Listagem de disciplinas",
+                "operationId": "2c7ebfb5c47c8e6b3d87eaa792d3ae7e",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/app/quiz/cadastrar": {
+            "post": {
+                "tags": [
+                    "Quiz"
+                ],
+                "summary": "quiz - api.app.quiz.cadastrar",
+                "description": "Rota para cadastr do quiz",
+                "operationId": "c69dfb7f6c38e67158fde023886563eb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "titulo",
+                                    "disciplina_id",
+                                    "professor_user_id",
+                                    "numero_questoes",
+                                    "tempo_horas",
+                                    "questions"
+                                ],
+                                "properties": {
+                                    "titulo": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Quiz Matemática"
+                                    },
+                                    "disciplina_id": {
+                                        "type": "integer",
+                                        "format": "numeric",
+                                        "example": "2"
+                                    },
+                                    "professor_user_id": {
+                                        "type": "integer",
+                                        "format": "numeric",
+                                        "example": "1"
+                                    },
+                                    "numero_questoes": {
+                                        "type": "integer",
+                                        "format": "numeric",
+                                        "example": "5"
+                                    },
+                                    "tempo_horas": {
+                                        "type": "number",
+                                        "format": "numeric",
+                                        "example": "2"
+                                    },
+                                    "questions": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "question": {
+                                                    "type": "string",
+                                                    "format": "text",
+                                                    "example": "São três exemplos de sólidos geométricos:"
+                                                },
+                                                "answers": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "required": [
+                                                            "resposta",
+                                                            "verdadeira"
+                                                        ],
+                                                        "type": "object"
+                                                    },
+                                                    "example": [
+                                                        {
+                                                            "resposta": "cubo, paralelepípedo, pirâmide",
+                                                            "verdadeira": true
+                                                        },
+                                                        {
+                                                            "resposta": "cubo, pirâmide e quadrado",
+                                                            "verdadeira": false
+                                                        },
+                                                        {
+                                                            "resposta": "prisma, círculo e cone",
+                                                            "verdadeira": false
+                                                        },
+                                                        {
+                                                            "resposta": "retângulo, trapézio e losango",
+                                                            "verdadeira": false
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Successful"
