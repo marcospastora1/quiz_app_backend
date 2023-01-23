@@ -194,8 +194,8 @@ class UsuarioController extends Controller
                     'created_at' => $this->getDateBr(),
                     'updated_at' => $this->getDateBr()
                 ]);
-                DB::commit();
                 event(new CadastroProfessor(nomeProfessor: $request['nome'], emailProfessor: $request['email'], userId: $id));
+                DB::commit();
             } else {
                 DB::table('aluno_users')->insert([
                     'user_id' => $id,
@@ -206,13 +206,14 @@ class UsuarioController extends Controller
                     'created_at' => $this->getDateBr(),
                     'updated_at' => $this->getDateBr()
                 ]);
-                DB::commit();
                 event(new CadastroProfessor(nomeProfessor: $request['nome'], emailProfessor: $request['email'],  userId: $id));
+                DB::commit();
             }
 
             return Retorno::mobileResult(true, 'Cadastro realizado com sucesso', null);
         } catch (Throwable $th) {
             DB::rollback();
+            dd($th);
             return Retorno::mobileResult(false, null, 8);
         }
     }
