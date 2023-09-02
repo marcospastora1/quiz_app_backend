@@ -101,14 +101,14 @@
                 ]
             }
         },
-        "/api/quiz/status/listar": {
+        "/api/app/quiz/status/listar": {
             "get": {
                 "tags": [
                     "Quiz"
                 ],
                 "summary": "quiz - api.app.quiz.status.listar",
                 "description": "Listagem status do quiz",
-                "operationId": "295ed253e1f4b5780214eed2af446404",
+                "operationId": "6cb02bd0212214d5c4981759efde6b9b",
                 "responses": {
                     "200": {
                         "description": "Successful"
@@ -157,7 +157,6 @@
                                 "required": [
                                     "titulo",
                                     "disciplina_id",
-                                    "professor_user_id",
                                     "numero_questoes",
                                     "tempo_horas",
                                     "questions"
@@ -172,11 +171,6 @@
                                         "type": "integer",
                                         "format": "numeric",
                                         "example": "2"
-                                    },
-                                    "professor_user_id": {
-                                        "type": "integer",
-                                        "format": "numeric",
-                                        "example": "1"
                                     },
                                     "numero_questoes": {
                                         "type": "integer",
