@@ -141,40 +141,40 @@ class UsuarioController extends Controller
         $tipo_rota = explode('.', $tipo_rota);
 
         if (!isset($request['nome'])) {
-            return Retorno::mobileResult(false, null, 4);
+            return Retorno::mobileResult(false, null, 4, 400);
         }
         if (DB::table('users')->where('email', '=', $request['email'])->exists()) {
-            return Retorno::mobileResult(false, null, 13);
+            return Retorno::mobileResult(false, null, 13, 400);
         }
         if (last($tipo_rota) == 'professor') {
             if (!isset($request['registro_professor'])) {
-                return Retorno::mobileResult(false, null, 5);
+                return Retorno::mobileResult(false, null, 5, 400);
             }
             if (DB::table('professor_users')->where('whatsapp', '=', $request['whatsapp'])->exists()) {
-                return Retorno::mobileResult(false, null, 10);
+                return Retorno::mobileResult(false, null, 10, 400);
             }
             if (DB::table('professor_users')->where('registro_professor', '=', $request['registro_professor'])->exists()) {
-                return Retorno::mobileResult(false, null, 11);
+                return Retorno::mobileResult(false, null, 11, 400);
             }
         } else {
             if (!isset($request['matricula'])) {
-                return Retorno::mobileResult(false, null, 5);
+                return Retorno::mobileResult(false, null, 5, 400);
             }
             if (DB::table('aluno_users')->where('whatsapp', '=', $request['whatsapp'])->exists()) {
-                return Retorno::mobileResult(false, null, 10);
+                return Retorno::mobileResult(false, null, 10, 400);
             }
             if (DB::table('aluno_users')->where('matricula', '=', $request['matricula'])->exists()) {
-                return Retorno::mobileResult(false, null, 11);
+                return Retorno::mobileResult(false, null, 11, 400);
             }
         }
         if (!isset($request['data_nascimento'])) {
-            return Retorno::mobileResult(false, null, 6);
+            return Retorno::mobileResult(false, null, 6, 400);
         }
         if (!isset($request['whatsapp'])) {
-            return Retorno::mobileResult(false, null, 7);
+            return Retorno::mobileResult(false, null, 7, 400);
         }
         if (DB::table('users')->where('email', '=', $request['email'])->exists()) {
-            return Retorno::mobileResult(false, null, 9);
+            return Retorno::mobileResult(false, null, 9, 400);
         }
 
         try {
@@ -210,11 +210,11 @@ class UsuarioController extends Controller
                 DB::commit();
             }
 
-            return Retorno::mobileResult(true, 'Cadastro realizado com sucesso', null);
+            return Retorno::mobileResult(status: true, data: 'Cadastro realizado com sucesso', codigo: null);
         } catch (Throwable $th) {
             DB::rollback();
             dd($th);
-            return Retorno::mobileResult(false, null, 8);
+            return Retorno::mobileResult(false, null, 8, 400);
         }
     }
 

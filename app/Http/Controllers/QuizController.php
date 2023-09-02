@@ -29,7 +29,7 @@ class QuizController extends Controller
 
     /**
      * @OA\Get(
-     * path="/api/quiz/status/listar",
+     * path="/api/app/quiz/status/listar",
      * summary="quiz - api.app.quiz.status.listar",
      * description ="Listagem status do quiz",
      * tags={"Quiz"},
@@ -45,9 +45,10 @@ class QuizController extends Controller
     public function listarStatus()
     {
         try {
-            return Retorno::mobileResult(true, $this->quizStatus->retornaStatus(), null);
+            return Retorno::mobileResult(status: true, data: $this->quizStatus->retornaStatus(), codigo: null);
         } catch (Throwable $th) {
-            return Retorno::mobileResult(false, null, 0);
+            dd($th);
+            return Retorno::mobileResult(false, null, 0, 400);
         }
     }
 
@@ -70,9 +71,9 @@ class QuizController extends Controller
     public function listarDisciplina()
     {
         try {
-            return Retorno::mobileResult(true, $this->disciplinas->retornaDisciplinas(), null);
+            return Retorno::mobileResult(status: true, data: $this->disciplinas->retornaDisciplinas(), codigo: null);
         } catch (Throwable $th) {
-            return Retorno::mobileResult(false, null, 0);
+            return Retorno::mobileResult(false, null, 0, 404);
         }
     }
 
@@ -142,23 +143,23 @@ class QuizController extends Controller
         $professor_user_id = $professor_user_id[0]->id;
 
         if (!isset($request['titulo'])) {
-            return Retorno::mobileResult(false, null, 15);
+            return Retorno::mobileResult( false, null, 15, 404);
         }
         if (!isset($request['disciplina_id'])) {
-            return Retorno::mobileResult(false, null, 16);
+            return Retorno::mobileResult( false, null, 16, 404);
         }
         if (!isset($request['tempo_horas'])) {
-            return Retorno::mobileResult(false, null, 19);
+            return Retorno::mobileResult( false, null, 19, 404);
         }
         if ($request['numero_questoes'] != count($request['questions'])) {
-            return Retorno::mobileResult(false, null, 17);
+            return Retorno::mobileResult( false, null, 17, 404);
         }
         if ($request['numero_questoes'] != count($request['questions'])) {
-            return Retorno::mobileResult(false, null, 17);
+            return Retorno::mobileResult( false, null, 17, 404);
         }
         foreach ($request['questions'] as $question) {
             if (count($question['answers']) != 4) {
-                return Retorno::mobileResult(false, null, 18);
+                return Retorno::mobileResult( false, null, 18, 404);
             }
             foreach ($question['answers'] as $answer) {
                 if ($answer['verdadeira'] == true) {
@@ -167,10 +168,10 @@ class QuizController extends Controller
             }
         }
         if ($i > $request['numero_questoes']) {
-            return Retorno::mobileResult(false, null, 20);
+            return Retorno::mobileResult( false, null, 20, 404);
         }
         if ($i < $request['numero_questoes']) {
-            return Retorno::mobileResult(false, null, 21);
+            return Retorno::mobileResult( false, null, 21, 404);
         }
 
         try {
@@ -211,10 +212,10 @@ class QuizController extends Controller
                 }
             }
             DB::commit();
-            return Retorno::mobileResult(true, 'Quiz Cadastrado com sucesso', null);
+            return Retorno::mobileResult(status: true, data: 'Quiz Cadastrado com sucesso', codigo: null);
         } catch (Throwable $th) {
             DB::rollback();
-            return Retorno::mobileResult(false, null, 22);
+            return Retorno::mobileResult( false, null, 22, 404);
         }
     }
 }

@@ -10,7 +10,7 @@ class Retorno
     private bool $isJson;
     private int $codigo;
 
-    public static function webResult(bool $status, $data, $mensagem, bool $isJson = true)
+    public static function webResult(bool $status, $data, $mensagem, bool $isJson = true, int $statusCode = 200)
     {
         $result = [
             'status' => $status,
@@ -18,13 +18,13 @@ class Retorno
             'mensagem' => $mensagem
         ];
         if ($isJson == true) {
-            return response()->json($result);
+            return response(status: $statusCode)->json($result);
         } else {
             return $result;
         }
     }
 
-    public static function mobileResult(bool $status, $data, int $codigo = null)
+    public static function mobileResult(bool $status, $data, int $codigo = null, int $statusCode = 200)
     {
         $message = config('mobileCodeMessage');
         if ($codigo) {
@@ -38,6 +38,6 @@ class Retorno
             'data' => $data,
             'error' => (isset($erro)) ? $erro : null
         ];
-        return response()->json($result);
+        return response()->json($result, $statusCode);
     }
 }

@@ -61,27 +61,27 @@ class AuthController extends Controller
             ->join('professor_users', 'users.id', '=', 'professor_users.user_id')
             ->where('users.email', $request->email)
             ->exists()) {
-            return Retorno::mobileResult(false, null, 1);
+            return Retorno::mobileResult(false, null, 1, 401);
         }
-        $token = Auth::guard('api')->attempt($credenciais);
+        $token = Auth::guard('api')->attempt($credenciais, true);
         if ($token) {
             if (Auth::guard('api')->user()->status == true) {
                 $dadosUser = ProfessorUser::join('users', 'users.id', 'professor_users.user_id')->where('user_id', Auth::guard('api')->user()->id)->first();
                 return Retorno::mobileResult(
-                    true,
-                    [
+                    status: true,
+                    data:[
                         'id' => $dadosUser->user_id,
                         'nome' => $dadosUser->nome,
                         'email' => $dadosUser->email,
                         'token' => $token
                     ],
-                    null
+                    codigo : null
                 );
             } else {
-                return Retorno::mobileResult(false, null, 1);
+                return Retorno::mobileResult(false, null, 1, 401);
             }
         }
-        return Retorno::mobileResult(false, null, 1);
+        return Retorno::mobileResult(false, null, 1, 401);
     }
 
     /**
@@ -114,26 +114,26 @@ class AuthController extends Controller
             ->join('aluno_users', 'users.id', '=', 'aluno_users.user_id')
             ->where('users.email', $request->email)
             ->exists()) {
-            return Retorno::mobileResult(false, null, 1);
+            return Retorno::mobileResult(false, null, 1, 401);
         }
         $token = Auth::guard('api')->attempt($credenciais);
         if ($token) {
             if (Auth::guard('api')->user()->status == true) {
                 $dadosUser = AlunoUser::join('users', 'users.id', 'aluno_users.user_id')->where('user_id', Auth::guard('api')->user()->id)->first();
                 return Retorno::mobileResult(
-                    true,
-                    [
+                    status: true,
+                    data: [
                         'id' => $dadosUser->user_id,
                         'nome' => $dadosUser->nome,
                         'email' => $dadosUser->email,
                         'token' => $token
                     ],
-                    null
+                    codigo: null
                 );
             } else {
-                return Retorno::mobileResult(false, null, 1);
+                return Retorno::mobileResult(false, null, 1, 401);
             }
         }
-        return Retorno::mobileResult(false, null, 1);
+        return Retorno::mobileResult(false, null, 1, 401);
     }
 }
